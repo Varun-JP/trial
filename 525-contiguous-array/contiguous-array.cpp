@@ -11,11 +11,13 @@ public:
         }
         for(int i = 0 ; i< n ; i++){
             sum+= nums[i];
-            if(!mp.count(sum)){
-                mp[sum] = i ;
+            if(mp.count(sum)){
+
+                max_len = max(max_len, i - mp[sum]);
             }
-            len = i - mp[sum];
-            max_len= max(max_len , len);
+            else{
+                mp[sum] = i ;
+            }   
         }
         return max_len;
     }
