@@ -6,7 +6,7 @@ public:
         ListNode* new_tail= head ;
         ListNode* tail = head ;
         ListNode* new_head = head;
-        while(tail -> next ){
+        while(tail -> next ){ //as long as it exists
             n++;
             tail = tail -> next; 
         }
