@@ -2,7 +2,7 @@ class Solution {
 public:
     ListNode* rotateRight(ListNode* head, int k) {
         int n =1;
-        if (!head || !head->next) return head;
+        if (!head || !head->next) return head; //imp
         ListNode* new_tail= head ;
         ListNode* tail = head ;
         ListNode* new_head = head;
