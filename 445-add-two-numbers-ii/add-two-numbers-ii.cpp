@@ -31,8 +31,8 @@ public:
             int new_val = sum%10;
 
             node = new ListNode(new_val); // 17 .  7 goes in heere
-            node->next = result; //1 here
-            result = node;
+            node->next = result; //1 here the new should point to the old
+            result = node; //reult pointing to old node
             carry = sum/10;
             if(curr1) curr1 = curr1->next;
             if(curr2) curr2 = curr2->next;
@@ -41,3 +41,4 @@ public:
         return result;
     }
 };
+
