@@ -37,7 +37,9 @@ public:
             if(curr1) curr1 = curr1->next;
             if(curr2) curr2 = curr2->next;
         }
-
+            while(result && result ->val ==0 && result->next){
+                result = result->next;
+            }
         return result;
     }
 };
