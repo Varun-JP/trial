@@ -2,7 +2,7 @@
 class Solution {
 public:
     bool hasCycle(ListNode *head) {
-        if(!head || head->next == nullptr ) return false;
+        if(!head ) return false;
         ListNode* slow = head;
         ListNode* fast = head->next;
 
