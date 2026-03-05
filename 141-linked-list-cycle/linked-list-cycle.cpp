@@ -4,14 +4,13 @@ public:
     bool hasCycle(ListNode *head) {
         if(!head ) return false;
         ListNode* slow = head;
-        ListNode* fast = head;
+        ListNode* fast = head->next; //both can be heads at the start but  
 
-
+        //in this loop you have to keep if slow == fast below the slow and fast otherwise it would hit at the first try and fail directly 
         while(fast && fast->next){
-            
+            if(slow == fast) return true;
             slow = slow-> next;
             fast = fast->next->next;
-            if(slow == fast) return true;
         }
         return false;
     }
