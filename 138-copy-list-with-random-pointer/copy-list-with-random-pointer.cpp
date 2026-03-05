@@ -70,7 +70,7 @@ public:
             } else {
                 curr->next->random = NULL;
             }
-
+            //curr->next->random = curr->random-? curr-random->next : NULL;
             curr = curr->next->next;  // Jump to next original node
         }
 
@@ -100,7 +100,7 @@ public:
             } else {
                 copy->next = NULL;
             }
-
+            //copy-> next= copy->next? copy->next->next :
             curr = curr->next;            // Move to next original
         }
 
