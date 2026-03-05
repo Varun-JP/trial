@@ -7,7 +7,7 @@ public:
         ListNode* fast = head->next; //both can be heads at the start but  
 
         //in this loop you have to keep if slow == fast below the slow and fast otherwise it would hit at the first try and fail directly 
-        while(fast && fast->next){
+        while(fast!= NULL && fast->next !=NULL){
             if(slow == fast) return true;
             slow = slow-> next;
             fast = fast->next->next;
