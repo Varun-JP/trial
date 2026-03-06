@@ -14,7 +14,7 @@ public:
 };
 
 class LRUCache {
-private:
+public:
     unordered_map<int, Node*> mp;
     Node* head;
     Node* tail;
