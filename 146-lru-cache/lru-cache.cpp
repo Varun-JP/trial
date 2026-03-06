@@ -5,8 +5,6 @@ class LRUCache {
             int value;
             Node* prev;
             Node* next;
-
-
             Node(int k,int v){
                 key = k;
                 value = v;
@@ -28,7 +26,7 @@ class LRUCache {
             tail->prev = head;
         }
         void removeNode(Node* node){
-            node->prev->next = node->next;
+            node->prev->next = node->next; //A <-> B <-> C to  A <-> C
             node->next->prev = node->prev;
         }
         void insertAfterHead(Node* node){
@@ -58,6 +56,7 @@ class LRUCache {
                     Node* lru = tail->prev;
                     removeNode(lru);
                     mp.erase(lru->key);
+                    delete(lru);
                 }
                 Node* node = new Node(key,value);
                 insertAfterHead(node);
