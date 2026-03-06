@@ -1,4 +1,4 @@
-class LRUCache {
+
     class Node{
         public:
             int key;
@@ -12,6 +12,7 @@ class LRUCache {
                 next = NULL;
             }
     };
+    class LRUCache {
     unordered_map<int , Node*> mp;
     Node* head;
     Node* tail;
