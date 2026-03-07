@@ -13,7 +13,6 @@ class Solution {
             if(matrix[i][0] == 0) FCZ = true; //col is fixed we parse rows
             i++;
         }
-
         for(int i = 1 ; i< n ; i++){
             for(int j = 1 ; j< m ; j++){
                 if(matrix[i][j] == 0){
@@ -25,19 +24,14 @@ class Solution {
         for(int i = 1 ; i< n ; i++){
             if(matrix[i][0] == 0 ){
                 for(int j = 1 ; j< m ; j++){
-                    {
-                        matrix[i][j]=0;
-                    }
+                     matrix[i][j]=0;
                 }
             }
         }
        for(int j = 1 ; j< m ; j++) {
-            {
-                if( matrix[0][j]==0){
-                    for(int i = 1 ; i< n ; i++)
-                    {
+            if( matrix[0][j]==0){
+                for(int i = 1 ; i< n ; i++){
                         matrix[i][j]=0;
-                    }
                 }
             }
        }
