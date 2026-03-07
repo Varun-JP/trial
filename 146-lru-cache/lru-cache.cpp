@@ -9,8 +9,8 @@ public:
     Node(int k, int v) {
         key = k;
         value = v;
-        prev = NULL;
-        next = NULL;
+        prev = nullptr;
+        next = nullptr;
     }
 };
 
@@ -19,32 +19,34 @@ class LRUCache {
     unordered_map<int, Node*> mp;
     Node* head;
     Node* tail;
-    int cap;
+    int cap; //to preserve it asa class member 
 
 public:
     LRUCache(int capacity) { //constructor so has the same name as the class
-        cap = capacity;
-        head = new Node(-1, -1); //(key , value)
+        cap = capacity;              //saving it through out the code
+        head = new Node(-1, -1);     //(key , value)
         tail = new Node(-1, -1);
-        head->next = tail; //borders to avoid if nullptr used then we have 
-        tail->prev = head; //parse again and again for finding LRU node
-    } //aka dummy (sentinel) nodes.
+        head->next = tail;          //borders to avoid if nullptr used then we have 
+        tail->prev = head;          //parse again and again for finding LRU node
+    }                               //aka dummy (sentinel) nodes.
 
-    void removeNode(Node* node) {
-        node->prev->next = node->next; //A <-> B <-> C to  A <-> C
-        node->next->prev = node->prev;
-    }
+    void removeNode(Node* node) {   //A <-> B <-> C to  A <-> C
+        (node->prev)->next = node->next; 
+        (node->next)->prev = node->prev; 
+    }                                  
+//removes the curr node and links prev to next
+//removes the current node and links previous to next 
 
     void insertAfterHead(Node* node) {
         node->next = head->next;
         node->prev = head;
-        head->next->prev = node;
+        (head->next)->prev = node;
         head->next = node;
     }
 
     int get(int key) {
         if (!mp.count(key)) return -1;
-        Node* node = mp[key];
+        Node* node = mp[key]; 
         removeNode(node);
         insertAfterHead(node);
         return node->value;
@@ -52,8 +54,8 @@ public:
 
     void put(int key, int value) {
         if (mp.count(key)) {
-            Node* node = mp[key];
-            node->value = value;
+            Node* node = mp[key]; //to know where the key actually is 
+            node->value = value;//replacing with new value 
             removeNode(node);
             insertAfterHead(node);
         } else {
@@ -66,7 +68,7 @@ public:
             }
             Node* node = new Node(key, value);
             insertAfterHead(node);
-            mp[key] = node;
+            mp[key] = node; //saving node as new 
         }
     }
 };
