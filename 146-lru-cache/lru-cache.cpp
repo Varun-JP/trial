@@ -1,61 +1,27 @@
-class Node {
-public:
-    int key, value;
-    Node* prev;
-    Node* next;
-
-    Node(int k, int v) {
-        key = k;
-        value = v;
-        prev = nullptr;
-        next = nullptr;
-    }
-};
-
 class LRUCache {
-    unordered_map<int, Node*> mp;
-    Node* head;
-    Node* tail;
     int cap;
 
-    inline void removeNode(Node* node) {
-        Node* p = node->prev;
-        Node* n = node->next;
-        p->next = n;
-        n->prev = p;
-    }
-
-    inline void insertAfterHead(Node* node) {
-        Node* first = head->next;
-
-        node->next = first;
-        node->prev = head;
-
-        first->prev = node;
-        head->next = node;
-    }
+    list<pair<int,int>> cache;
+    unordered_map<int, list<pair<int,int>>::iterator> mp;
 
 public:
     LRUCache(int capacity) {
         cap = capacity;
-
-        head = new Node(-1,-1);
-        tail = new Node(-1,-1);
-
-        head->next = tail;
-        tail->prev = head;
     }
 
     int get(int key) {
+
         auto it = mp.find(key);
         if(it == mp.end()) return -1;
 
-        Node* node = it->second;
+        int value = it->second->second;
 
-        removeNode(node);
-        insertAfterHead(node);
+        cache.erase(it->second);
+        cache.push_front({key,value});
 
-        return node->value;
+        mp[key] = cache.begin();
+
+        return value;
     }
 
     void put(int key, int value) {
@@ -63,24 +29,15 @@ public:
         auto it = mp.find(key);
 
         if(it != mp.end()){
-            Node* node = it->second;
-            node->value = value;
-
-            removeNode(node);
-            insertAfterHead(node);
-            return;
+            cache.erase(it->second);
+        }
+        else if(cache.size() == cap){
+            auto last = cache.back();
+            mp.erase(last.first);
+            cache.pop_back();
         }
 
-        if(mp.size() == cap){
-            Node* lru = tail->prev;
-
-            removeNode(lru);
-            mp.erase(lru->key);
-            delete lru;
-        }
-
-        Node* node = new Node(key,value);
-        insertAfterHead(node);
-        mp[key] = node;
+        cache.push_front({key,value});
+        mp[key] = cache.begin();
     }
 };
