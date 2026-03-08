@@ -28,8 +28,8 @@ public:
     }
     vector<vector<string>> solveNQueens(int n) {
         col = vector<int>(n,0);
-        diag1 = vector<int> (2*n-1 , 0); //for any n*n space , the D is row + col
-        diag2 = vector<int> (2*n -1, 0);
+        diag1 = vector<int> (2*n , 0); //for any n*n space , the D is row + col
+        diag2 = vector<int> (2*n, 0);
         board = vector<string>( n , string(n , '.'));
         solve( n , 0);
         return ans;
