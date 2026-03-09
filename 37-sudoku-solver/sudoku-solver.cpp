@@ -1,8 +1,8 @@
 class Solution {
 public:
-    bool row[9][10];
-    bool col[9][10];
-    bool box[9][10];
+    bool row[10][10];
+    bool col[10][10];
+    bool box[10][10];
     bool solve(vector<vector<char>> &board ){
         for(int r = 0; r< 9 ; r++){
             for(int c =0 ; c < 9 ; c++){
