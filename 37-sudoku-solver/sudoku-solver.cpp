@@ -7,10 +7,10 @@ public:
         for(int r = 0; r< 9 ; r++){
             for(int c =0 ; c < 9 ; c++){
                 if(board[r][c] == '.'){
-                    int b = (r/3)*3 + (c/3);
-                    for(int d =1 ; d<= 9 ;d++){
+                    int b = (r/3)*3 + (c/3); //index = row * width + col
+                    for(int d =0 ; d< 9 ;d++){
                         if(row[r][d] || col[c][d] || box[b][d])   continue;
-                        board[r][c] = '0' + d ; 
+                        board[r][c] = '1' + d ; 
                         // row[r][d] → true if digit d is used in row r.
                         row[r][d] = 1, col[c][d] = 1 , box[b][d] =1;
                         if(solve(board)) return true; //since sudoku only has 1 path
@@ -21,15 +21,15 @@ public:
                 }
             }
         }
-        return true; //no empty cell left 
+        return true; //no empty cell left , board is filled
     }
     void solveSudoku(vector<vector<char>>& board) {
         for(int r = 0; r < 9; r++){
             for(int c = 0; c < 9; c++){
                 if(board[r][c] != '.'){
-                    int d = board[r][c] - '0';
+                    int d = board[r][c] - '1';
                     int b = (r/3)*3 + (c/3);
-                    row[r][d] = col[c][d] = box[b][d] = true;
+                    row[r][d] = col[c][d] = box[b][d] = 1;
                  }
             }
         }
