@@ -6,14 +6,14 @@ public:
     bool dfs(vector<vector<char>>& board, int idx){
         if(idx == empty.size()) return true;
 
-        int best = 0;
+        int best = idx;
         int minOptions = 10;
-
+        int options;
         for(int i = idx; i < empty.size(); i++){
             int r = empty[i].first;
             int c = empty[i].second;
 
-            int options = 0;
+            options = 0;
             for(int d = 1; d <= 9; d++){
                 int b= (r/3)*3 + c/3;
                 if(!row[r][d] && !col[c][d] && !box[b][d])
