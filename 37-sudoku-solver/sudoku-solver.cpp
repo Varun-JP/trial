@@ -5,7 +5,7 @@ public:
 
     bool dfs(vector<vector<char>>& board, int idx){
         if(idx == empty.size()) return true;
-
+//if the amount of recursion matches the amount of empty  rows/col then we return
         int best = idx;
         int minOptions = 10;
         int options;
@@ -21,11 +21,11 @@ public:
             }
             if(options < minOptions){
                 minOptions = options;
-                best = i;
+                best = i; //save the index where we found the best/ lowest options
             }
         }
 
-        swap(empty[idx], empty[best]);
+        swap(empty[idx], empty[best]);  //moving the best candidate to the curr pos
 
         int r = empty[idx].first;
         int c = empty[idx].second;
